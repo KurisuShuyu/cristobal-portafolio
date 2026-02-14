@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Interactivo: Cristóbal Cornejo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Chart Container Utilities */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Card Hover Effects */
+        .interactive-card {
+            transition: all 0.3s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Timeline Connector */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #e2e8f0;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- Chosen Palette: Slate (Neutrals) + Teal (Accent) + Indigo (Primary) -->
+    <!-- Application Structure Plan: 
+         1. Header: Quick identity and contact info.
+         2. Hero/Intro: Professional summary synthesized from the CV.
+         3. Dashboard Grid:
+            - Left Col: "Tech Stack Analysis" (Chart.js Radar/Bar) to visualize skills.
+            - Right Col: "Career Timeline" (Interactive List) merging Education and Experience chronologically.
+         4. Project Spotlight Section: Detailed cards for "Trendify" and "App DIFA" with expand/collapse logic for impact points.
+         5. Certifications Banner: A visual grid of achievements.
+         6. Footer: Contact CTA.
+         Why: This structure transforms a linear CV into a dashboard that allows recruiters to visualize competence (charts) and explore depth (projects) interactively.
+    -->
+
+    <!-- Navigation / Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold text-xl">CC</div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 leading-none">Cristóbal Cornejo</h1>
+                    <span class="text-xs text-slate-500 font-medium tracking-wide">DESARROLLADOR DE SOFTWARE</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <button onclick="scrollToSection('profile')" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Perfil</button>
+                <button onclick="scrollToSection('skills')" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Habilidades</button>
+                <button onclick="scrollToSection('projects')" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Proyectos</button>
+                <button onclick="scrollToSection('experience')" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Experiencia</button>
+            </nav>
+            <button onclick="triggerContactAction()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm">
+                Contactar
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Section 1: Hero & Profile Summary -->
+        <section id="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Perfil Profesional</h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    Estudiante de Ingeniería en Informática en <strong>Duoc UC</strong> y Técnico de Nivel Medio, orientado al desarrollo de soluciones de software eficientes bajo estándares de <strong>Clean Code</strong>. Mi enfoque combina la capacidad técnica en la creación de aplicaciones (desktop & web) con una visión analítica para la optimización de integraciones y bases de datos.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-800">
+                        Inglés Fluido (B2)
+                    </span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                        Disponibilidad Inmediata
+                    </span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                        Clean Code Advocate
+                    </span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl p-8 text-white flex flex-col justify-center shadow-lg bg-gradient-to-br from-slate-900 to-slate-800">
+                <h3 class="text-lg font-semibold mb-4 text-indigo-300">Datos de Contacto</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-xl">📧</span>
+                        <a href="mailto:cristobalcornejoromo@gmail.com" class="hover:text-indigo-300 transition-colors">cristobalcornejoromo@gmail.com</a>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-xl">📱</span>
+                        <span>+56 9 3101 2710</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-xl">📍</span>
+                        <span>Santiago, Chile</span>
+                    </li>
+                    <li class="mt-4 pt-4 border-t border-slate-700 flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors">LinkedIn Profile</a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors">GitHub Portfolio</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 2: Skills Analysis (Visualization) -->
+        <!-- Visualization & Content Choices:
+             Goal: Visualize technical proficiency breadth.
+             Viz: Chart.js Bar Chart (Horizontal).
+             Interaction: Tooltips showing details.
+             Justification: A list of skills is boring. A chart allows comparing relative strength (e.g., Python Certification vs Basic Java) visually.
+             NO SVG/Mermaid confirmation.
+        -->
+        <section id="skills" class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-slate-900">Análisis Técnico</h2>
+                <p class="text-sm text-slate-500 hidden sm:block">Visualización de competencias principales</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chart Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">Stack Tecnológico</h3>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Textual Skills Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Methodologies -->
+                    <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100">
+                        <h4 class="font-bold text-indigo-900 mb-2 flex items-center">
+                            <span class="mr-2">⚡</span> Metodologías
+                        </h4>
+                        <ul class="text-sm space-y-2 text-indigo-800">
+                            <li>• <strong>Clean Code:</strong> Enfoque en mantenibilidad y lectura.</li>
+                            <li>• <strong>Git/GitHub:</strong> Control de versiones y flujo de trabajo.</li>
+                            <li>• <strong>Soporte Técnico:</strong> Hardware y Software.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Databases -->
+                    <div class="bg-teal-50 p-5 rounded-xl border border-teal-100">
+                        <h4 class="font-bold text-teal-900 mb-2 flex items-center">
+                            <span class="mr-2">💾</span> Bases de Datos
+                        </h4>
+                        <ul class="text-sm space-y-2 text-teal-800">
+                            <li>• <strong>MySQL:</strong> Gestión y creación de esquemas.</li>
+                            <li>• <strong>Oracle Database:</strong> Certificado por Inacap.</li>
+                            <li>• <strong>Gestión de Datos:</strong> Optimización de estructuras.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 sm:col-span-2">
+                        <h4 class="font-bold text-slate-900 mb-2 flex items-center">
+                            <span class="mr-2">🛠️</span> Frameworks & Herramientas
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs text-slate-600">Electron JS</span>
+                            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs text-slate-600">Linux (Básico)</span>
+                            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs text-slate-600">Shipit API</span>
+                            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs text-slate-600">Vtex API</span>
+                            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs text-slate-600">Databot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Projects Spotlight -->
+        <section id="projects" class="space-y-6">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-slate-900">Proyectos Destacados</h2>
+                <p class="text-slate-600 max-w-2xl mt-2">
+                    Aplicación práctica de conocimientos en entornos reales y personales. Haz clic en las tarjetas para ver los detalles técnicos y logros.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
+                <!-- Projects injected via JS -->
+            </div>
+        </section>
+
+        <!-- Section 4: Experience & Education Timeline -->
+        <section id="experience" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Trayectoria Académica y Laboral</h2>
+            
+            <div class="relative timeline-line space-y-12">
+                <!-- Timeline items injected via JS -->
+            </div>
+        </section>
+
+        <!-- Section 5: Certifications -->
+        <section id="certs" class="bg-gradient-to-r from-indigo-900 to-slate-900 rounded-2xl p-8 text-white">
+            <h2 class="text-xl font-bold mb-6 flex items-center">
+                <span class="bg-teal-500 w-2 h-8 mr-3 rounded-full"></span>
+                Certificaciones Oficiales
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors cursor-default">
+                    <div class="text-teal-400 font-bold text-lg mb-1">Python Essentials 1</div>
+                    <div class="text-slate-300 text-sm">Cisco Networking Academy</div>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors cursor-default">
+                    <div class="text-teal-400 font-bold text-lg mb-1">Oracle Database</div>
+                    <div class="text-slate-300 text-sm">Inacap (Curso Intensivo)</div>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors cursor-default">
+                    <div class="text-teal-400 font-bold text-lg mb-1">Desarrollo Apps Básicas</div>
+                    <div class="text-slate-300 text-sm">Inacap - 90 Horas</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">¿Listo para colaborar?</h2>
+            <p class="text-slate-600 mb-8">Actualmente buscando oportunidades para aplicar principios de Ingeniería de Software y Clean Code.</p>
+            <button onclick="location.href='mailto:cristobalcornejoromo@gmail.com'" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 transition-colors">
+                Enviar Correo
+            </button>
+            <p class="mt-8 text-xs text-slate-400">Generado basado en CV - Cristóbal Felipe Cornejo Romo © 2026</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Store
+        const appData = {
+            skills: {
+                labels: ['Python (Certificado)', 'JavaScript', 'SQL (Oracle/MySQL)', 'HTML5/CSS3', 'Electron', 'Java (Básico)'],
+                data: [90, 85, 80, 85, 75, 50], // Simulated proficiency scores based on description
+                colors: [
+                    'rgba(59, 130, 246, 0.7)', // Blue
+                    'rgba(245, 158, 11, 0.7)', // Yellow
+                    'rgba(16, 185, 129, 0.7)', // Green
+                    'rgba(236, 72, 153, 0.7)', // Pink
+                    'rgba(99, 102, 241, 0.7)', // Indigo
+                    'rgba(100, 116, 139, 0.7)' // Slate
+                ]
+            },
+            projects: [
+                {
+                    id: 'trendify',
+                    title: 'Trendify',
+                    subtitle: 'Plataforma de Análisis de Tendencias',
+                    role: 'Líder de Proyecto / Desarrollador Full Stack',
+                    period: '2025 - Presente',
+                    type: 'Personal',
+                    desc: 'Plataforma integral para el análisis de tendencias, desarrollada con un enfoque estricto en arquitectura de software y código limpio.',
+                    tags: ['Python', 'Architecture', 'Clean Code', 'Scalability'],
+                    details: [
+                        'Liderazgo del ciclo de vida completo: desde requerimientos hasta despliegue.',
+                        'Diseño de mapas conceptuales y arquitectura escalable.',
+                        'Implementación rigurosa de principios SOLID y Clean Code para mantenibilidad.'
+                    ],
+                    icon: '📈'
+                },
+                {
+                    id: 'difa',
+                    title: 'App DIFA',
+                    subtitle: 'Gestión Interna Desktop',
+                    role: 'Desarrollador (Práctica)',
+                    period: 'Isesa S.A.',
+                    type: 'Empresarial',
+                    desc: 'Aplicación de escritorio multiplataforma diseñada para automatizar flujos de trabajo internos críticos de la empresa.',
+                    tags: ['Electron JS', 'Automation', 'Desktop App', 'SEO'],
+                    details: [
+                        'Desarrollo desktop utilizando framework Electron.',
+                        'Automatización exitosa de procesos de gestión interna.',
+                        'Investigación e implementación de mejoras SEO para catálogos masivos.'
+                    ],
+                    icon: '💻'
+                }
+            ],
+            timeline: [
+                {
+                    year: '2025 - Presente',
+                    title: 'Ingeniería en Informática',
+                    org: 'Duoc UC',
+                    type: 'education',
+                    desc: 'Cursando 3ro semestre. Formación avanzada en ingeniería de software.',
+                    side: 'left'
+                },
+                {
+                    year: 'Mar 2025 - May 2025',
+                    title: 'Practicante de Programación',
+                    org: 'Isesa S.A.',
+                    type: 'work',
+                    desc: 'Integración de APIs (Shipit, Vtex), gestión de BD WhatsApp y soporte de infraestructura.',
+                    side: 'right'
+                },
+                {
+                    year: '2021 - 2024',
+                    title: 'Técnico Nivel Medio en Programación',
+                    org: 'Liceo Comercial Vate Vicente Huidobro',
+                    type: 'education',
+                    desc: 'Obtención del título técnico. Base sólida en fundamentos de programación.',
+                    side: 'left'
+                }
+            ]
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            initChart();
+            renderProjects();
+            renderTimeline();
+        });
+
+        // 1. Chart Visualization Logic
+        function initChart() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: appData.skills.labels,
+                    datasets: [{
+                        label: 'Nivel de Dominio Estimado (%)',
+                        data: appData.skills.data,
+                        backgroundColor: appData.skills.colors,
+                        borderRadius: 6,
+                        barThickness: 20
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bar chart
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '% - Dominio Técnico';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { display: false }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 2. Project Rendering Logic with Interaction
+        function renderProjects() {
+            const container = document.getElementById('projects-grid');
+            container.innerHTML = appData.projects.map(project => `
+                <div class="interactive-card bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer group" onclick="toggleProjectDetails('${project.id}')">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                ${project.icon}
+                            </div>
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-slate-100 text-slate-600 uppercase tracking-wide">${project.type}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">${project.title}</h3>
+                        <p class="text-sm text-indigo-600 font-medium mb-3">${project.subtitle}</p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">${project.desc}</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${project.tags.map(tag => `<span class="text-xs px-2 py-1 bg-slate-50 text-slate-500 rounded border border-slate-100">#${tag}</span>`).join('')}
+                        </div>
+
+                        <div id="details-${project.id}" class="hidden pt-4 border-t border-slate-100 bg-slate-50 -mx-6 -mb-6 p-6 mt-4 animate-fade-in">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Impacto & Responsabilidades</h4>
+                            <ul class="space-y-2">
+                                ${project.details.map(detail => `
+                                    <li class="flex items-start text-sm text-slate-700">
+                                        <span class="text-indigo-500 mr-2">▹</span> ${detail}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-4 text-center text-xs text-indigo-500 font-semibold group-hover:translate-x-1 transition-transform flex items-center">
+                            Ver Detalles <span class="ml-1">→</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleProjectDetails(id) {
+            const detailsEl = document.getElementById(`details-${id}`);
+            if (detailsEl.classList.contains('hidden')) {
+                detailsEl.classList.remove('hidden');
+            } else {
+                detailsEl.classList.add('hidden');
+            }
+        }
+
+        // 3. Timeline Rendering Logic
+        function renderTimeline() {
+            const container = document.querySelector('.timeline-line');
+            container.innerHTML = appData.timeline.map((item, index) => `
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center group">
+                    <!-- Date/Label - Alternating logic handled by class manipulation below for simplicity in template literal -->
+                    <div class="${item.side === 'left' ? 'md:text-right order-1' : 'md:text-left md:order-3 order-2 md:col-start-2'}">
+                        <span class="inline-block px-3 py-1 bg-white border border-slate-200 rounded-full text-sm font-bold text-indigo-600 shadow-sm mb-2 group-hover:scale-105 transition-transform">
+                            ${item.year}
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900">${item.title}</h3>
+                        <p class="text-slate-500 text-sm font-medium">${item.org}</p>
+                    </div>
+
+                    <!-- Center Dot -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-sm ${item.type === 'work' ? 'bg-indigo-600' : 'bg-teal-500'} order-2 md:order-2 flex items-center justify-center">
+                        <div class="w-8 h-8 rounded-full bg-indigo-100 opacity-0 group-hover:opacity-50 absolute transition-opacity"></div>
+                    </div>
+
+                    <!-- Description Card -->
+                    <div class="${item.side === 'left' ? 'md:order-3 md:col-start-2 order-3' : 'md:text-right md:order-1 order-3'} bg-slate-50 p-4 rounded-lg border border-slate-100 hover:bg-white hover:shadow-md transition-all">
+                         <p class="text-sm text-slate-600 leading-relaxed">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navigation Utilities
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function triggerContactAction() {
+            // Simple visual feedback
+            alert("Redirigiendo a cliente de correo...");
+            window.location.href = "mailto:cristobalcornejoromo@gmail.com";
+        }
+
+    </script>
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</body>
+</html>
