@@ -1,287 +1,260 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cristóbal Cornejo - Portafolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Slate 900 */
-            color: #f8fafc; /* Slate 50 */
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity */
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portafolio de Cristóbal Cornejo Romo: desarrollador backend y full stack en Santiago, Chile.">
+<title>Cristóbal Cornejo - Portafolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--ff);line-height:1.6;--r:12px}
+body[data-theme=normal]{--bg:#0f172a;--fg:#f8fafc;--mut:#cbd5e1;--card:rgba(30,41,59,.75);--alt:rgba(30,41,59,.4);--bd:rgba(255,255,255,.12);--ac:#60a5fa;--ac2:#34d399;--btn:#3b82f6;--bfg:#fff;--ff:Inter,sans-serif;--hf:Inter,sans-serif}
+body[data-theme=vip]{--bg:#0a0a0a;--fg:#f5ecd0;--mut:#c4b27c;--card:rgba(24,19,8,.9);--alt:rgba(212,175,55,.05);--bd:#b8962e;--ac:#d4af37;--ac2:#f5d776;--btn:linear-gradient(135deg,#f5d776,#b8860b);--bfg:#111;--ff:Georgia,serif;--hf:'Playfair Display',Georgia,serif}
+body[data-theme=hacker]{--bg:#000;--fg:#33ff66;--mut:#27c452;--card:rgba(0,12,0,.85);--alt:rgba(0,0,0,.6);--bd:#118a31;--ac:#33ff66;--ac2:#b6ffc8;--btn:#000;--bfg:#33ff66;--ff:'Courier New',monospace;--hf:'Courier New',monospace;--r:0}
+body[data-theme=aero]{--bg:linear-gradient(180deg,#6ec9fb,#d6f3ff 45%,#b7efc6);--fg:#0b2b4a;--mut:#27526f;--card:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.5) 50%,rgba(255,255,255,.65) 51%,rgba(255,255,255,.5));--alt:rgba(255,255,255,.2);--bd:#fff;--ac:#0a6cb0;--ac2:#237a3d;--btn:linear-gradient(#d6f6ff,#7fd8ff 50%,#4cc2f5 51%,#9ae6ff);--bfg:#04304d;--ff:'Segoe UI',Frutiger,Tahoma,sans-serif;--hf:'Segoe UI',Frutiger,Tahoma,sans-serif;--r:18px;background-attachment:fixed}
+body[data-theme=hacker] *{text-shadow:0 0 4px rgba(51,255,102,.45)}
+body[data-theme=aero]::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 20% 80%,#fff8 0 2%,#8fe3ff55 3% 6%,transparent 7%),radial-gradient(circle at 75% 30%,#fff8 0 3%,#8fe3ff55 4% 9%,transparent 10%),radial-gradient(circle at 55% 65%,#fff8 0 1.5%,#8fe3ff55 2% 4%,transparent 5%),radial-gradient(circle at 90% 85%,#fff8 0 2.5%,#8fe3ff55 3% 7%,transparent 8%);animation:float 14s ease-in-out infinite alternate}
+@keyframes float{to{transform:translateY(-28px)}}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.4;display:none}
+main,footer,nav{position:relative;z-index:1}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--card);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.bar{max-width:1100px;margin:auto;padding:0 16px;height:64px;display:flex;align-items:center;gap:12px}
+.logo{font-family:var(--hf);font-weight:700;font-size:1.25rem;color:var(--ac);margin-right:auto}
+.links{display:flex;gap:4px}.links a{text-decoration:none;padding:8px 12px;border-radius:var(--r);font-size:.9rem}.links a:hover{color:var(--ac)}
+.rb{width:40px;height:40px;border-radius:50%;border:2px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer;padding:0;overflow:hidden;display:grid;place-items:center;font-size:1rem}
+.rb svg{width:100%;height:100%;display:block}
+#ham{display:none}
+.pop{position:absolute;right:16px;top:60px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:6px;display:none;flex-direction:column;min-width:170px;backdrop-filter:blur(10px)}
+.pop.open{display:flex}.pop button{background:none;border:0;color:var(--fg);font:inherit;text-align:left;padding:8px 12px;cursor:pointer;border-radius:var(--r)}.pop button[aria-pressed=true]{color:var(--ac);font-weight:700}
+section{padding:80px 16px}.w{max-width:1000px;margin:auto}
+h1,h2,h3{font-family:var(--hf);margin:0}h2{font-size:1.9rem;text-align:center;margin-bottom:32px}h2 i{color:var(--ac);margin-right:8px}
+#inicio{min-height:100vh;display:flex;align-items:center;text-align:center;padding-top:96px}
+h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.15;margin-bottom:12px}h1 span{color:var(--ac)}
+body[data-theme=vip] h1 span,body[data-theme=vip] h2{background:linear-gradient(90deg,#b8860b,#f5d776,#b8860b);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.sub{font-size:1.25rem;color:var(--mut);margin:0 0 24px}
+.soc{display:flex;justify-content:center;gap:24px;font-size:1.8rem;margin-bottom:24px}.soc a{transition:transform .2s}.soc a:hover{transform:scale(1.12);color:var(--ac)}
+.btn{display:inline-block;margin:6px;padding:12px 22px;border-radius:var(--r);background:var(--btn);color:var(--bfg);font-weight:600;text-decoration:none;border:1px solid var(--bd)}
+.btn:hover{filter:brightness(1.1)}body[data-theme=hacker] .btn:hover{background:#33ff66;color:#000}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:24px;backdrop-filter:blur(8px)}
+body[data-theme=aero] .card{box-shadow:0 8px 24px rgba(10,80,140,.25),inset 0 1px 0 #fff}
+body[data-theme=vip] .card{box-shadow:0 0 0 1px #000,0 0 18px rgba(212,175,55,.15)}
+.alt{background:var(--alt)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+p{margin:0 0 12px;color:var(--mut)}strong,b{color:var(--fg)}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}.pill,.chip{border:1px solid var(--bd);border-radius:var(--r);padding:4px 12px;font-size:.85rem;color:var(--fg)}
+.pill{border-radius:99px;border-color:var(--ac);color:var(--ac)}
+.ico{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-right:8px;color:var(--ac)}
+body[data-theme=aero] .ico{background:radial-gradient(circle at 35% 22%,#fff 0 10%,#6fd4ff 38%,#0a7cc8);color:#fff;box-shadow:0 2px 6px rgba(0,60,120,.4)}
+.card h3{font-size:1.15rem;margin-bottom:12px;display:flex;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+ul{margin:0;padding-left:20px;color:var(--mut)}li{margin-bottom:8px}
+.tl{border-left:2px solid var(--ac);padding-left:22px}.tl time,.card small{display:block;color:var(--mut);font-size:.85rem;margin-bottom:10px}
+.tag{float:right;font-size:.75rem;border:1px solid var(--ac);color:var(--ac);padding:2px 8px;border-radius:99px}
+footer{text-align:center;padding:28px 16px;border-top:1px solid var(--bd);color:var(--mut);font-size:.85rem;background:var(--card)}
+@media(max-width:800px){.links{display:none;position:absolute;left:0;right:0;top:64px;flex-direction:column;background:var(--card);padding:8px 16px;border-bottom:1px solid var(--bd)}.links.open{display:flex}#ham{display:grid}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+body[data-theme=undertale]{--bg:#000;--fg:#fff;--mut:#e8e8e8;--card:#000;--alt:#0b0b0b;--bd:#fff;--ac:#ffd800;--ac2:#f33;--btn:#000;--bfg:#ff7f27;--ff:'Pixelify Sans','Courier New',monospace;--hf:'Pixelify Sans','Courier New',monospace;--r:0;cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 8 8'><path fill='red' d='M1 1h2v1h2V1h2v1h1v3H7v1H6v1H5v1H3V7H2V6H1V5H0V2h1z'/></svg>") 8 8,auto}
+body[data-theme=undertale] .card{border-width:4px;backdrop-filter:none}
+body[data-theme=undertale] .btn{border:4px solid #ff7f27}
+body[data-theme=undertale] .btn:hover,body[data-theme=undertale] .links a:hover{color:#ffd800;border-color:#ffd800}
+body[data-theme=undertale] .btn:hover::before,body[data-theme=undertale] .links a:hover::before{content:"♥ ";color:#f00}
+body[data-theme=undertale] ul{list-style:none;padding-left:0}body[data-theme=undertale] li::before{content:"* "}
+body[data-theme=undertale] .card h3::before{content:"* ";margin-right:6px}
+body[data-theme=hacker] .card::before{content:"● ● ●  user@ccr:~$";display:block;margin:-24px -24px 16px;padding:6px 12px;background:#042b0e;border-bottom:1px solid var(--bd);font-size:.8rem}
+body[data-theme=hacker] h2::before{content:"$ cat ";opacity:.7}body[data-theme=hacker] h2 i{display:none}
+body[data-theme=hacker] h1::after{content:"█";animation:blink 1s steps(1) infinite}
+body[data-theme=hacker] .links a::before{content:"./"}
+body[data-theme=hacker]::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px);animation:flick 4s infinite}
+body[data-theme=hacker] .pill,body[data-theme=undertale] .pill,body[data-theme=undertale] .tag{border-radius:0}
+body[data-theme=undertale] .chip{border-radius:0;border-width:2px}
+@keyframes blink{50%{opacity:0}}@keyframes flick{0%,100%{opacity:.8}50%{opacity:1}}
+body[data-theme=vip] h2::after{content:"";display:block;width:120px;height:1px;margin:10px auto 0;background:linear-gradient(90deg,transparent,#d4af37,transparent)}
+body[data-theme=vip] .card{outline:1px solid rgba(212,175,55,.35);outline-offset:-8px}
+body[data-theme=vip] h1 span{background-size:200% 100%;animation:sheen 6s linear infinite}@keyframes sheen{to{background-position:200% 0}}
+body[data-theme=aero] .chip{background:linear-gradient(#fff,#d9f1ff);box-shadow:inset 0 1px #fff}body[data-theme=aero] .btn:hover{box-shadow:0 0 14px #7fd8ff}
+.pc{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}.pc input{accent-color:var(--ac)}#plP{flex:1;min-width:120px}#plV{width:90px}
+#plList{list-style:none;padding:0;margin:16px 0 0}#plList li{margin:0 0 6px}#plList li::before{content:none!important}
+#plList button{width:100%;text-align:left;background:none;border:1px solid var(--bd);color:var(--fg);font:inherit;padding:8px 12px;border-radius:var(--r);cursor:pointer}
+#plList button[aria-current=true]{border-color:var(--ac);color:var(--ac)}
+#songBg{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s;pointer-events:none}#songBg.on{opacity:1}
+#songBg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}body[data-theme=aero] #songBg::after{background:rgba(255,255,255,.3)}
+</style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
+<body data-theme="normal">
+<canvas id="rain" aria-hidden="true"></canvas>
+<div id="songBg" aria-hidden="true"></div>
+<nav aria-label="Principal">
+<div class="bar">
+<div class="logo">&lt;CCR /&gt;</div>
+<div class="links" id="links">
+<a href="#inicio" data-i18n="n1">Inicio</a><a href="#perfil" data-i18n="n2">Perfil</a><a href="#habilidades" data-i18n="n3">Habilidades</a><a href="#experiencia" data-i18n="n4">Experiencia</a><a href="#proyectos" data-i18n="n5">Proyectos</a><a href="#musica" id="navMus" data-i18n="n6" hidden>Música</a>
+</div>
+<button class="rb" id="sndBtn" aria-label="Sonido y música" aria-pressed="false"><i class="fas fa-volume-xmark" aria-hidden="true"></i></button>
+<button class="rb" id="themeBtn" aria-label="Cambiar estilo" aria-haspopup="true" aria-expanded="false"><i class="fas fa-palette" aria-hidden="true"></i></button>
+<button class="rb" id="langBtn" aria-label="Cambiar idioma / Switch language"></button>
+<button class="rb" id="ham" aria-label="Menú" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+</div>
+<div class="pop" id="themePop" role="group" aria-label="Estilo">
+<button data-t="normal" data-i18n="tn0">Medianoche</button><button data-t="vip" data-i18n="tn1">Oro</button><button data-t="hacker" data-i18n="tn2">Terminal</button><button data-t="aero" data-i18n="tn3">Aqua</button><button data-t="undertale" data-i18n="tn4">Subsuelo</button>
+</div>
+</nav>
+<main>
+<section id="inicio"><div class="w">
+<h1 data-i18n="h1">Hola, soy <span>Cristobal Cornejo Romo</span></h1>
+<p class="sub" data-i18n="sub">Desarrollador Backend y Full Stack | Estudiante de Ingeniería en Informática</p>
+<div class="soc">
+<a href="https://github.com/KurisuShuyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+<a href="https://www.linkedin.com/in/cristobal-cornejo-romo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+<a href="mailto:cristobalcornejoromo@gmail.com" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+<a href="https://wa.me/56931012710" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+</div>
+<a class="btn" href="Cristobal_Cornejo_CV_ES.pdf" download data-i18n="cv1"><i class="fas fa-file-arrow-down" aria-hidden="true"></i> Descargar CV · Español</a>
+<a class="btn" href="Cristobal_Cornejo_CV_EN.pdf" download data-i18n="cv2"><i class="fas fa-file-arrow-down" aria-hidden="true"></i> Descargar CV · Inglés</a>
+</div></section>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-bold text-xl tracking-wider text-blue-400">
-                    &lt;CCR /&gt;
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#inicio" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition">Inicio</a>
-                        <a href="#perfil" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition">Perfil</a>
-                        <a href="#habilidades" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition">Habilidades</a>
-                        <a href="#experiencia" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition">Experiencia</a>
-                        <a href="#proyectos" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition">Proyectos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+<section id="perfil" class="alt"><div class="w">
+<h2><i class="fas fa-user" aria-hidden="true"></i><span data-i18n="t1">Perfil Profesional</span></h2>
+<div class="card">
+<p data-i18n="p1">Estudiante de Ingeniería en Informática en Duoc UC y Técnico de Nivel Medio en Programación, orientado a soluciones de software eficientes bajo estándares de <b>Clean Code</b>.</p>
+<p data-i18n="p2">Tengo experiencia en aplicaciones web y de escritorio, corrección de integraciones entre APIs, automatización con web scraping y un pipeline de datos desplegado con <b>Docker y Kubernetes</b>. Trabajo con bases de datos relacionales y no relacionales, escribo pruebas unitarias y conozco la arquitectura en la nube de AWS.</p>
+<div class="pills"><span class="pill"><i class="fas fa-location-dot" aria-hidden="true"></i> Santiago, Chile</span><span class="pill" data-i18n="pl1">Disponibilidad inmediata</span><span class="pill" data-i18n="pl2">Inglés C1 · Español nativo</span></div>
+</div></div></section>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="min-h-screen flex items-center justify-center pt-16">
-        <div class="text-center px-4 max-w-4xl mx-auto">
-            <h1 class="text-4xl sm:text-6xl font-bold mb-4">
-                Hola, soy <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Cristobal Cornejo Romo</span>
-            </h1>
-            <p class="text-xl sm:text-2xl text-slate-300 mb-8 font-light">
-                Desarrollador Full Stack | Estudiante de Ingeniería en Informática
-            </p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://github.com/KurisuShuyu" target="_blank" class="text-slate-300 hover:text-white text-3xl transition transform hover:scale-110">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:cristobalcornejoromo@gmail.com" class="text-slate-300 hover:text-white text-3xl transition transform hover:scale-110">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://wa.me/56931012710" target="_blank" class="text-slate-300 hover:text-white text-3xl transition transform hover:scale-110">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-            <div class="mt-12 animate-bounce">
-                <a href="#perfil" class="text-slate-400 hover:text-white">
-                    <i class="fas fa-chevron-down text-2xl"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+<section id="habilidades"><div class="w">
+<h2><i class="fas fa-code" aria-hidden="true"></i><span data-i18n="t2">Habilidades Técnicas</span></h2>
+<div class="grid">
+<div class="card"><h3><span class="ico"><i class="fas fa-laptop-code" aria-hidden="true"></i></span><span data-i18n="s1">Lenguajes</span></h3><div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">Rust</span><span class="chip">SQL</span><span class="chip">HTML5 / CSS3</span></div></div>
+<div class="card"><h3><span class="ico"><i class="fas fa-server" aria-hidden="true"></i></span><span data-i18n="s2">Backend y Frontend</span></h3><div class="chips"><span class="chip">Spring Boot</span><span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">React</span><span class="chip">Electron</span></div></div>
+<div class="card"><h3><span class="ico"><i class="fas fa-cloud" aria-hidden="true"></i></span><span data-i18n="s3">Cloud y DevOps</span></h3><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip" data-i18n="aws">AWS (conocimiento de arquitectura)</span><span class="chip">Linux</span></div></div>
+<div class="card"><h3><span class="ico"><i class="fas fa-database" aria-hidden="true"></i></span><span data-i18n="s4">Bases de Datos</span></h3><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Oracle (PL/SQL)</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div></div>
+<div class="card"><h3><span class="ico"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i></span><span data-i18n="s5">Herramientas y Métodos</span></h3><div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Puppeteer</span><span class="chip" data-i18n="ut">Pruebas unitarias</span><span class="chip">Clean Code</span><span class="chip">Scrum</span></div></div>
+</div></div></section>
 
-    <!-- Perfil Profesional -->
-    <section id="perfil" class="py-20 bg-slate-800/50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-8 text-center"><i class="fas fa-user text-blue-400 mr-2"></i> Perfil Profesional</h2>
-            <div class="glass-card rounded-xl p-8 shadow-lg text-slate-300 leading-relaxed text-lg">
-                <p>
-                    Estudiante de Ingeniería en Informática en Duoc UC y Técnico de Nivel Medio en Programación. Orientado al desarrollo de soluciones de software eficientes bajo estándares de <strong>Clean Code</strong>. 
-                </p>
-                <p class="mt-4">
-                    Cuento con experiencia práctica en el desarrollo de aplicaciones web y de escritorio, optimización de integraciones de software, diseño de APIs y gestión de bases de datos relacionales y no relacionales. Poseo capacidad analítica para la resolución de problemas técnicos, conocimientos sólidos en <strong>despliegue cloud</strong> (AWS, Docker, Kubernetes) y un dominio fluido del idioma inglés.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
-                    <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold border border-blue-500/30"><i class="fas fa-map-marker-alt mr-1"></i> Santiago, Chile</span>
-                    <span class="px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-semibold border border-emerald-500/30"><i class="fas fa-check-circle mr-1"></i> Disponibilidad Inmediata</span>
-                    <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-semibold border border-purple-500/30"><i class="fas fa-language mr-1"></i> Inglés (B2) / Español</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="experiencia" class="alt"><div class="w">
+<h2><i class="fas fa-briefcase" aria-hidden="true"></i><span data-i18n="t3">Experiencia Laboral</span></h2>
+<div class="card tl">
+<h3 data-i18n="r1">Practicante de Programación – Isesa S.A.</h3>
+<time data-i18n="d1">Enero – Marzo 2025</time>
+<ul>
+<li data-i18n="b1"><b>App DIFA:</b> lideré la creación de una app de escritorio con Electron, con Clean Code, pruebas unitarias y Scrum junto a otras áreas.</li>
+<li data-i18n="b2"><b>Automatización:</b> módulo de web scraping (Puppeteer) que extrae datos e imágenes de catálogos a Excel y carpetas. Un archivo de 1 a 2 días a mano pasó a 1–6 minutos, con más de 500 productos procesados.</li>
+<li data-i18n="b3"><b>Integraciones:</b> resolví las caídas recurrentes entre las APIs de Shipit y Vtex y errores de acceso por URLs incorrectas.</li>
+<li data-i18n="b4"><b>Otros:</b> análisis de mercado y búsquedas con Google Analytics, procesamiento de catálogos en Excel y BD para mensajería masiva (WhatsApp).</li>
+</ul></div></div></section>
 
-    <!-- Habilidades Técnicas -->
-    <section id="habilidades" class="py-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center"><i class="fas fa-code text-emerald-400 mr-2"></i> Habilidades Técnicas</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Lenguajes -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-blue-400 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-laptop-code mr-2 text-blue-400"></i> Lenguajes</h3>
-                    <ul class="space-y-2 text-slate-300">
-                        <li><i class="fab fa-js text-yellow-400 mr-2"></i> JavaScript & TypeScript</li>
-                        <li><i class="fab fa-python text-blue-500 mr-2"></i> Python (Certificado)</li>
-                        <li><i class="fab fa-java text-red-400 mr-2"></i> Java (Básico)</li>
-                        <li><i class="fab fa-html5 text-orange-500 mr-2"></i> HTML5 & CSS3</li>
-                    </ul>
-                </div>
+<section id="proyectos"><div class="w">
+<h2><i class="fas fa-rocket" aria-hidden="true"></i><span data-i18n="t4">Proyectos Destacados</span></h2>
+<div class="grid">
+<div class="card"><h3>Trendify <span class="tag" data-i18n="tg1" style="margin-left:auto">Proyecto personal</span></h3><small data-i18n="ps1">Plataforma de análisis de tendencias (2025 – Presente)</small>
+<ul><li data-i18n="q1">Pipeline que reúne tendencias de Instagram, YouTube, DuckDuckGo y una API de noticias, y las categoriza por sector (50 tendencias por sector durante 3 meses).</li><li data-i18n="q2">APIs propias desplegadas con Docker y Kubernetes, con PostgreSQL y Redis.</li><li data-i18n="q3">Pruebas unitarias del pipeline con datos mock.</li></ul></div>
+<div class="card"><h3>DIFA <span class="tag" style="margin-left:auto">Isesa S.A.</span></h3><small data-i18n="ps2">App de escritorio para extraer catálogos</small>
+<ul><li data-i18n="q4">Hecha con Electron (HTML5 y CSS3): ingresas una URL y genera un Excel con los productos y sus imágenes.</li><li data-i18n="q5">Redujo el trabajo de 1–2 días por archivo a 1–6 minutos.</li></ul></div>
+</div></div></section>
 
-                <!-- Frontend & Backend -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-emerald-400 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-server mr-2 text-emerald-400"></i> Frontend & Backend</h3>
-                    <ul class="space-y-2 text-slate-300">
-                        <li><i class="fab fa-react text-blue-400 mr-2"></i> ReactJS</li>
-                        <li><i class="fab fa-node-js text-green-500 mr-2"></i> Node.js & NestJS</li>
-                        <li><i class="fas fa-exchange-alt text-gray-400 mr-2"></i> APIs REST & GraphQL</li>
-                        <li><i class="fas fa-desktop text-purple-400 mr-2"></i> Electron (Desktop)</li>
-                    </ul>
-                </div>
+<section id="musica" class="alt" hidden><div class="w">
+<h2><i class="fas fa-music" aria-hidden="true"></i><span data-i18n="t7">Música</span></h2>
+<div class="card"><audio id="pl" preload="none"></audio>
+<h3 id="plT"></h3><p id="plA"></p>
+<div class="pc"><button class="rb" id="plPrev" aria-label="Anterior / Previous"><i class="fas fa-backward-step" aria-hidden="true"></i></button><button class="rb" id="plPlay" aria-label="Reproducir / Play"><i class="fas fa-play" aria-hidden="true"></i></button><button class="rb" id="plNext" aria-label="Siguiente / Next"><i class="fas fa-forward-step" aria-hidden="true"></i></button>
+<input type="range" id="plP" min="0" max="100" value="0" aria-label="Progreso / Progress"><i class="fas fa-volume-high" aria-hidden="true"></i><input type="range" id="plV" min="0" max="100" value="70" aria-label="Volumen / Volume"></div>
+<ul id="plList"></ul></div></div></section>
 
-                <!-- Infraestructura & Cloud -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-purple-400 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-cloud mr-2 text-purple-400"></i> Cloud & DevOps</h3>
-                    <ul class="space-y-2 text-slate-300">
-                        <li><i class="fab fa-docker text-blue-500 mr-2"></i> Docker & Kubernetes</li>
-                        <li><i class="fab fa-aws text-orange-400 mr-2"></i> AWS</li>
-                        <li><i class="fas fa-cubes text-indigo-400 mr-2"></i> Terraform</li>
-                        <li><i class="fab fa-linux text-yellow-200 mr-2"></i> Linux</li>
-                    </ul>
-                </div>
+<section class="alt"><div class="w"><div class="grid">
+<div><h2 style="text-align:left;font-size:1.5rem"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span data-i18n="t5">Formación Académica</span></h2>
+<div class="card" style="margin-bottom:16px"><b data-i18n="e1">Ingeniería en Informática</b><p style="margin:0">Duoc UC · <span data-i18n="e2">En curso, 4to semestre</span></p></div>
+<div class="card"><b data-i18n="e3">Técnico de Nivel Medio en Programación</b><p style="margin:0">Liceo Comercial Vate Vicente Huidobro</p></div></div>
+<div><h2 style="text-align:left;font-size:1.5rem"><i class="fas fa-certificate" aria-hidden="true"></i><span data-i18n="t6">Certificaciones</span></h2>
+<div class="card"><ul style="list-style:none;padding:0;margin:0"><li><b>Python Essentials 1</b> · Cisco Networking Academy</li><li><b>Oracle Database</b> · Inacap</li><li style="margin:0"><b data-i18n="c3">Técnicas de Desarrollo Aplicaciones Básicas</b> · Inacap</li></ul></div></div>
+</div></div></section>
+</main>
+<footer data-i18n="ft">© 2026 Cristóbal Cornejo Romo. Hecho con HTML y CSS.</footer>
 
-                <!-- Bases de Datos -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-yellow-400 hover:-translate-y-2 transition duration-300">
-                    <h3 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-database mr-2 text-yellow-400"></i> Bases de Datos</h3>
-                    <ul class="space-y-2 text-slate-300">
-                        <li><i class="fas fa-table text-blue-300 mr-2"></i> MySQL</li>
-                        <li><i class="fas fa-server text-red-500 mr-2"></i> Oracle Database</li>
-                        <li><i class="fas fa-project-diagram text-green-400 mr-2"></i> Relacionales / No Relacionales</li>
-                    </ul>
-                </div>
+<script src="musica.js"></script>
+<script>
+window.MUSICA=window.MUSICA||[];window.CARPETA=window.CARPETA||'assets/Musica/';
+const EN={n1:'Home',n2:'Profile',n3:'Skills',n4:'Experience',n5:'Projects',
+h1:"Hi, I'm <span>Cristobal Cornejo Romo</span>",sub:'Backend & Full Stack Developer | Computer Science Student',
+cv1:'<i class="fas fa-file-arrow-down" aria-hidden="true"></i> Download CV · Spanish',cv2:'<i class="fas fa-file-arrow-down" aria-hidden="true"></i> Download CV · English',
+t1:'Professional Profile',p1:'Computer Science student at Duoc UC with a mid-level technical diploma in Programming, focused on efficient software built to <b>Clean Code</b> standards.',
+p2:'I have experience with web and desktop apps, fixing API integrations, automating tasks with web scraping and a data pipeline deployed with <b>Docker and Kubernetes</b>. I work with relational and non-relational databases, write unit tests and know AWS cloud architecture.',
+pl1:'Available immediately',pl2:'English C1 · Native Spanish',t2:'Technical Skills',s1:'Languages',s2:'Backend & Frontend',s3:'Cloud & DevOps',s4:'Databases',s5:'Tools & Methods',
+aws:'AWS (architecture knowledge)',ut:'Unit testing',t3:'Experience',r1:'Programming Intern – Isesa S.A.',d1:'Jan – Mar 2025',
+b1:'<b>DIFA app:</b> I led the creation of an Electron desktop app, using Clean Code, unit tests and Scrum with other departments.',
+b2:'<b>Automation:</b> web-scraping module (Puppeteer) that pulls product data and images from catalogs into Excel and folders. A file that took 1–2 days by hand now takes 1–6 minutes, with 500+ products processed.',
+b3:'<b>Integrations:</b> fixed recurring downtime between the Shipit and Vtex APIs and access errors caused by wrong URLs.',
+b4:'<b>Other:</b> market and search analysis with Google Analytics, catalog processing in Excel and databases for bulk messaging (WhatsApp).',
+t4:'Featured Projects',tg1:'Personal project',ps1:'Trend analysis platform (2025 – Present)',
+q1:'Pipeline that collects trends from Instagram, YouTube, DuckDuckGo and a news API and categorizes them by sector (50 trends per sector over 3 months).',
+q2:'Own APIs deployed with Docker and Kubernetes, with PostgreSQL and Redis.',q3:'Unit tests for the pipeline using mock data.',
+ps2:'Desktop app to extract product catalogs',q4:'Built with Electron (HTML5 and CSS3): enter a URL and it generates an Excel file with the products and their images.',q5:'Cut the work from 1–2 days per file to 1–6 minutes.',
+t5:'Education',e1:'Computer Science (B.Eng.)',e2:'In progress, 4th semester',e3:'Mid-level Technical Diploma in Programming',t6:'Certifications',c3:'Basic Application Development Techniques',
+ft:'© 2026 Cristóbal Cornejo Romo. Built with HTML and CSS.',tn0:'Midnight',tn1:'Gold',tn2:'Terminal',tn3:'Aqua',tn4:'Underground',n6:'Music',t7:'Music'};
+const FL={es:'<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#fff"/><rect y="15" width="30" height="15" fill="#d52b1e"/><rect width="15" height="15" fill="#0039a6"/><path fill="#fff" d="M7.5 2.5l1.4 4.2h4.4L9.700 9.300l1.400 4.200-3.600-2.600-3.600 2.600 1.400-4.200L1.700 6.700h4.400z"/></svg>',
+en:'<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#fff"/><g fill="#b22234"><rect width="30" height="4.3"/><rect y="8.6" width="30" height="4.3"/><rect y="17.2" width="30" height="4.3"/><rect y="25.7" width="30" height="4.3"/></g><rect width="15" height="17" fill="#3c3b6e"/><g fill="#fff"><circle cx="3.500" cy="3.500" r="1"/><circle cx="7.500" cy="3.500" r="1"/><circle cx="11.500" cy="3.500" r="1"/><circle cx="5.500" cy="8.500" r="1"/><circle cx="9.500" cy="8.500" r="1"/><circle cx="3.500" cy="13.500" r="1"/><circle cx="7.500" cy="13.500" r="1"/><circle cx="11.500" cy="13.500" r="1"/></g></svg>'};
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+$$('[data-i18n]').forEach(e=>e.dataset.es=e.innerHTML);
+function setLang(l){document.documentElement.lang=l;$$('[data-i18n]').forEach(e=>{e.innerHTML=l=='en'?EN[e.dataset.i18n]:e.dataset.es});
+$('#langBtn').innerHTML=FL[l];$('#langBtn').dataset.l=l;document.title=l=='en'?'Cristóbal Cornejo - Portfolio':'Cristóbal Cornejo - Portafolio';
+$('#themeBtn').setAttribute('aria-label',l=='en'?'Change style':'Cambiar estilo');$('#sndBtn').setAttribute('aria-label',l=='en'?'Sound and music':'Sonido y música');put('lang',l);type()}
+$('#langBtn').onclick=()=>setLang($('#langBtn').dataset.l=='es'?'en':'es');
+const cv=$('#rain'),cx=cv.getContext('2d');let raf,cols=[];
+function rain(){const f=16,ch='01アイウエオカキクケコサシスセソ<>/{}$#';cv.width=innerWidth;cv.height=innerHeight;cols=Array(Math.ceil(cv.width/f)).fill(0).map(()=>Math.random()*cv.height/f);
+(function d(){cx.fillStyle='rgba(0,0,0,.08)';cx.fillRect(0,0,cv.width,cv.height);cx.fillStyle='#33ff66';cx.font=f+'px monospace';
+cols.forEach((y,i)=>{cx.fillText(ch[Math.floor(Math.random()*ch.length)],i*f,y*f);cols[i]=y*f>cv.height&&Math.random()>.975?0:y+1});raf=requestAnimationFrame(d)})()}
+function setTheme(t){document.body.dataset.theme=t;cancelAnimationFrame(raf);cv.style.display='none';
+if(t=='hacker'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){cv.style.display='block';rain()}
+$$('#themePop button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t==t));put('theme',t);stopMus();if(on&&gest)startMus();type()}
+addEventListener('resize',()=>{if(document.body.dataset.theme=='hacker'){cancelAnimationFrame(raf);rain()}});
+$('#themeBtn').onclick=()=>{const o=$('#themePop').classList.toggle('open');$('#themeBtn').setAttribute('aria-expanded',o)};
+$$('#themePop button').forEach(b=>b.onclick=()=>{setTheme(b.dataset.t);$('#themePop').classList.remove('open')});
+$('#ham').onclick=()=>{const o=$('#links').classList.toggle('open');$('#ham').setAttribute('aria-expanded',o)};
+$$('.links a').forEach(a=>a.onclick=()=>$('#links').classList.remove('open'));
 
-                <!-- Metodologías -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-pink-400 hover:-translate-y-2 transition duration-300 md:col-span-2 lg:col-span-2">
-                    <h3 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-tools mr-2 text-pink-400"></i> Metodologías y Herramientas</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Pruebas Unitarias</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Principios Clean Code</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Metodologías Ágiles (Scrum)</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Git / GitHub</span>
-                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Trabajo Colaborativo (QA, DevOps)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experiencia Laboral -->
-    <section id="experiencia" class="py-20 bg-slate-800/50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center"><i class="fas fa-briefcase text-blue-400 mr-2"></i> Experiencia Laboral</h2>
-            
-            <div class="relative border-l-2 border-blue-500 ml-3 md:ml-0">
-                
-                <!-- Isesa S.A. -->
-                <div class="mb-10 ml-6">
-                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-500 rounded-full -left-3 ring-4 ring-slate-900"></span>
-                    <h3 class="flex items-center mb-1 text-lg font-semibold text-white">Practicante de Programación - Isesa S.A.</h3>
-                    <time class="block mb-4 text-sm font-normal leading-none text-slate-400">Marzo 2025 - Mayo 2025</time>
-                    <ul class="list-disc list-inside text-slate-300 space-y-2 ml-2">
-                        <li><strong>Desarrollo Web y Frontend:</strong> Desarrollo e implementación de UI utilizando HTML5 y CSS para aplicaciones de escritorio (Electron), aplicando principios de desarrollo web moderno.</li>
-                        <li><strong>Metodología Ágil:</strong> Gestión y participación en el ciclo de desarrollo asumiendo roles de Scrum Master, Developer y Product Owner.</li>
-                        <li><strong>Integración de Sistemas:</strong> Diagnóstico y resolución de incidencias en APIs con plataformas críticas (Shipit, Vtex y Databot).</li>
-                        <li><strong>Gestión de Datos:</strong> Administración y estructuración de BD para servicios de mensajería masiva (WhatsApp).</li>
-                        <li><strong>E-commerce e Infraestructura:</strong> Mejoras de SEO técnico, gestión de catálogos (Walmart) y soporte de hardware/sistemas.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Proyectos -->
-    <section id="proyectos" class="py-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center"><i class="fas fa-rocket text-purple-400 mr-2"></i> Proyectos Destacados</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Trendify -->
-                <div class="glass-card rounded-xl p-8 hover:shadow-xl hover:shadow-purple-500/20 transition duration-300 flex flex-col h-full">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-bold text-white">Trendify</h3>
-                        <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded border border-purple-500/30">Proyecto Personal</span>
-                    </div>
-                    <p class="text-slate-400 mb-4 text-sm">Plataforma de Análisis de Tendencias (2025 - Presente)</p>
-                    <ul class="text-slate-300 space-y-2 mb-6 flex-grow">
-                        <li><i class="fas fa-angle-right text-purple-400 mr-2"></i><strong>Desarrollo Full Stack:</strong> Liderazgo del ciclo de vida, desde requerimientos hasta la lógica de negocio.</li>
-                        <li><i class="fas fa-angle-right text-purple-400 mr-2"></i><strong>Arquitectura de Software:</strong> Diseño escalable, mapas conceptuales e implementación de APIs REST y GraphQL.</li>
-                        <li><i class="fas fa-angle-right text-purple-400 mr-2"></i><strong>DevOps y Cloud:</strong> Contenerización y despliegue utilizando Docker, Kubernetes, AWS y Terraform.</li>
-                        <li><i class="fas fa-angle-right text-purple-400 mr-2"></i><strong>Calidad de Código:</strong> Implementación de pruebas unitarias y Clean Code.</li>
-                    </ul>
-                </div>
-
-                <!-- App DIFA -->
-                <div class="glass-card rounded-xl p-8 hover:shadow-xl hover:shadow-blue-500/20 transition duration-300 flex flex-col h-full">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-bold text-white">App DIFA</h3>
-                        <span class="bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded border border-blue-500/30">Isesa S.A.</span>
-                    </div>
-                    <p class="text-slate-400 mb-4 text-sm">Sistema de Gestión Interna</p>
-                    <ul class="text-slate-300 space-y-2 mb-6 flex-grow">
-                        <li><i class="fas fa-angle-right text-blue-400 mr-2"></i>Diseño y ejecución de una aplicación desktop multiplataforma.</li>
-                        <li><i class="fas fa-angle-right text-blue-400 mr-2"></i>Desarrollada utilizando <strong>Electron</strong> con UI en HTML5 y CSS3.</li>
-                        <li><i class="fas fa-angle-right text-blue-400 mr-2"></i>Automatización exitosa de procesos críticos de gestión interna para la empresa.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Educación y Certificaciones -->
-    <section class="py-20 bg-slate-800/50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                
-                <!-- Educación -->
-                <div>
-                    <h2 class="text-2xl font-bold mb-6"><i class="fas fa-graduation-cap text-yellow-400 mr-2"></i> Formación Académica</h2>
-                    <div class="space-y-6">
-                        <div class="glass-card p-5 rounded-lg border-l-4 border-yellow-400">
-                            <h4 class="font-bold text-lg">Ingeniería en Informática</h4>
-                            <p class="text-slate-400">Duoc UC (En curso, 3er semestre)</p>
-                        </div>
-                        <div class="glass-card p-5 rounded-lg border-l-4 border-yellow-400">
-                            <h4 class="font-bold text-lg">Técnico de Nivel Medio en Programación</h4>
-                            <p class="text-slate-400">Liceo Comercial Vate Vicente Huidobro</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certificaciones -->
-                <div>
-                    <h2 class="text-2xl font-bold mb-6"><i class="fas fa-certificate text-emerald-400 mr-2"></i> Certificaciones</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-center glass-card p-4 rounded-lg">
-                            <i class="fab fa-python text-3xl text-emerald-400 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold">Python Essentials 1</h4>
-                                <p class="text-sm text-slate-400">Cisco Networking Academy</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center glass-card p-4 rounded-lg">
-                            <i class="fas fa-database text-3xl text-emerald-400 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold">Oracle Database</h4>
-                                <p class="text-sm text-slate-400">Inacap</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center glass-card p-4 rounded-lg">
-                            <i class="fas fa-code text-3xl text-emerald-400 mr-4"></i>
-                            <div>
-                                <h4 class="font-bold">Técnicas de Desarrollo Aplicaciones Básicas</h4>
-                                <p class="text-sm text-slate-400">Inacap</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 py-8 border-t border-slate-800 text-center">
-        <div class="max-w-6xl mx-auto px-4">
-            <p class="text-slate-400 text-sm">
-                &copy; 2026 Cristóbal Cornejo Romo. Desarrollado con HTML, Tailwind CSS y mucho código limpio.
-            </p>
-        </div>
-    </footer>
-
+let AC,MS,mus=null,on=get('snd')!='0',gest=false,tw,last=null;
+const SF={normal:[['sine',700,.04,.05]],vip:[['sine',1568,.05,.18]],hacker:[['square',1800,.03,.02]],aero:[['sine',1200,.06,.09]],undertale:[['square',500,.04,.05]]};
+const SC={normal:[['sine',600,.07,.08],['sine',900,.07,.1,.07]],vip:[['sine',1047,.08,.4],['sine',1568,.07,.5,.08]],hacker:[['square',900,.05,.06],['square',1400,.05,.06,.07]],aero:[['sine',784,.09,.15],['sine',1175,.09,.18,.09],['sine',1568,.07,.3,.18]],undertale:[['square',330,.06,.1],['square',660,.06,.1,.1]]};
+const MU={aero:{w:'sine',lp:1200,v:.05,len:7,ch:[[174.61,261.63,329.63,440],[164.81,246.94,329.63,392],[146.83,220,261.63,349.23],[130.81,246.94,329.63,392]],bw:'sine',bl:[523.25,587.33,659.25,783.99,880,1046.5],bv:.06,bd:2.5},
+hacker:{w:'sawtooth',lp:350,v:.04,len:8,ch:[[55,82.41,110],[51.91,77.78,103.83]],bw:'square',bl:[880,1320,1760],bv:.015,bd:.12},
+vip:{w:'triangle',lp:900,v:.06,len:8,ch:[[130.81,196,246.94,329.63],[110,164.81,261.63,329.63],[146.83,220,261.63,349.23],[98,196,246.94,349.23]],bw:'triangle',bl:[523.25,659.25,783.99,987.77,1174.66],bv:.07,bd:1.6},
+undertale:{w:'triangle',lp:1500,v:.05,len:6,ch:[[130.81,196,261.63],[110,164.81,220],[87.31,130.81,174.61],[98,146.83,196]],bw:'square',bl:[392,440,523.25,587.33,659.25],bv:.025,bd:.28}};
+function ac(){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();MS=AC.createGain();MS.gain.value=.5;MS.connect(AC.destination)}if(AC.state=='suspended')AC.resume();return AC}
+function tone(w,f,v,d,t0,dest){const a=ac(),o=a.createOscillator(),g=a.createGain(),t=a.currentTime+(t0||0);o.type=w;o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(dest||MS);o.start(t);o.stop(t+d+.05)}
+function sfx(k){if(!on||!gest)return;(k=='h'?SF:SC)[document.body.dataset.theme].forEach(n=>tone(n[0],n[1],n[2],n[3],n[4]))}
+function chord(P,fr,t,bus){fr.forEach(f=>[-4,4].forEach(dt=>{const o=AC.createOscillator(),g=AC.createGain(),l=AC.createBiquadFilter(),n=P.len;o.type=P.w;o.frequency.value=f;o.detune.value=dt;l.type='lowpass';l.frequency.value=P.lp;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(P.v,t+n*.3);g.gain.linearRampToValueAtTime(0,t+n*1.1);o.connect(l);l.connect(g);g.connect(bus);o.start(t);o.stop(t+n*1.2)}))}
+function startMus(){stopMus();const th=document.body.dataset.theme,P=MU[th],T=MUSICA.filter(t=>tm(t)==th);if(!on||(!P&&!T.length)||!pl.paused)return;ac();
+if(T.length){const a=new Audio();a.volume=.4;const randomStart=()=>{const t=T[Math.floor(Math.random()*T.length)];a.src=src(t);setBg(t);a.play().catch(err=>console.warn('[Música] Reproducción bloqueada:',err));};a.onended=randomStart;a.onerror=()=>console.warn('[Música] No se pudo cargar: '+a.src);randomStart();mus={a};return}
+const bus=AC.createGain();bus.connect(MS);let i=0;
+const step=()=>{chord(P,P.ch[i++%P.ch.length],AC.currentTime+.05,bus);for(let k=0;k<3;k++)tone(P.bw,P.bl[Math.floor(Math.random()*P.bl.length)],P.bv,P.bd,Math.random()*P.len,bus)};
+step();mus={bus,iv:setInterval(step,P.len*1000)}}
+function stopMus(){if(!mus)return;setBg();clearInterval(mus.iv);if(mus.a){mus.a.onended=null;mus.a.pause()}if(mus.bus){const b=mus.bus,n=AC.currentTime;b.gain.setValueAtTime(b.gain.value,n);b.gain.linearRampToValueAtTime(0,n+.5);setTimeout(()=>b.disconnect(),600)}mus=null}
+function updSnd(){const b=$('#sndBtn');b.setAttribute('aria-pressed',on);b.innerHTML='<i class="fas fa-volume-'+(on?'high':'xmark')+'" aria-hidden="true"></i>'}
+$('#sndBtn').onclick=()=>{on=!on;put('snd',on?'1':'0');updSnd();if(on){ac();startMus();sfx('c')}else stopMus()};
+document.addEventListener('mouseover',e=>{const t=e.target.closest('a,button,.chip,.card');if(t&&t!==last)sfx('h');last=t});
+document.addEventListener('click',e=>{if(e.target.closest('a,button,.chip')&&e.target.closest('#sndBtn')==null)sfx('c')});
+['keydown','mousedown','pointerup','touchend'].forEach(ev=>addEventListener(ev,()=>{gest=true;if(on&&!mus)startMus()},{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(AC){if(document.hidden)AC.suspend();else if(on)AC.resume()}});
+function type(){clearInterval(tw);const el=$('[data-i18n=sub]'),th=document.body.dataset.theme;if(th!='hacker'&&th!='undertale')return;if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+const txt=document.documentElement.lang=='en'?EN.sub:el.dataset.es;let n=0;el.textContent='';
+tw=setInterval(()=>{el.textContent=txt.slice(0,++n);if(on&&txt[n-1]!=' ')tone('square',th=='undertale'?520:1400,.03,.03);if(n>=txt.length)clearInterval(tw)},45)}
+updSnd();
+const sbg=$('#songBg');function setBg(t){if(t&&t.fondo){sbg.style.backgroundImage='url("'+encodeURI(t.fondo)+'")';sbg.classList.add('on')}else sbg.classList.remove('on')}
+const AL={medianoche:'normal',oro:'vip',terminal:'hacker',aqua:'aero',subsuelo:'undertale'},tm=t=>{t=String(t.tema||'').toLowerCase().trim();return AL[t]||t},src=t=>CARPETA+t.archivo.split('/').map(encodeURIComponent).join('/'),pl=$('#pl'),ic=n=>'<i class="fas fa-'+n+'" aria-hidden="true"></i>';let cur=0;
+function load(i,go){cur=(i+MUSICA.length)%MUSICA.length;const t=MUSICA[cur];pl.src=src(t);$('#plT').textContent=t.titulo||t.archivo;$('#plA').textContent=t.artista||'';$$('#plList button').forEach((b,j)=>b.setAttribute('aria-current',j==cur));if(go)pl.play().catch(()=>{})}
+if(MUSICA.length){$('#musica').hidden=false;$('#navMus').hidden=false;
+$('#plList').innerHTML=MUSICA.map((t,i)=>'<li><button></button></li>').join('');
+$$('#plList button').forEach((b,i)=>{const t=MUSICA[i];b.textContent=(t.titulo||t.archivo)+(t.artista?' · '+t.artista:'');b.onclick=()=>load(i,true)});load(0);MUSICA.forEach(t=>fetch(src(t),{method:'HEAD'}).then(r=>{if(!r.ok)console.warn('[Música] Error '+r.status+' → '+src(t))}).catch(()=>{}))}
+$('#plPlay').onclick=()=>pl.paused?pl.play().catch(()=>{}):pl.pause();
+$('#plPrev').onclick=()=>load(cur-1,!pl.paused);$('#plNext').onclick=()=>load(cur+1,!pl.paused);
+pl.onerror=()=>{if(pl.getAttribute('src'))$('#plA').textContent='⚠ No se pudo cargar: '+pl.src};
+pl.onplay=()=>{stopMus();setBg(MUSICA[cur]);$('#plPlay').innerHTML=ic('pause')};pl.onpause=()=>{setBg();$('#plPlay').innerHTML=ic('play')};pl.onended=()=>load(cur+1,true);
+pl.ontimeupdate=()=>{$('#plP').value=pl.duration?pl.currentTime/pl.duration*100:0};
+$('#plP').oninput=e=>{if(pl.duration)pl.currentTime=pl.duration*e.target.value/100};
+$('#plV').oninput=e=>{pl.volume=e.target.value/100};pl.volume=.7;
+setLang(get('lang')||((navigator.language||'es').slice(0,2)=='en'?'en':'es'));setTheme(get('theme')||'normal');
+</script>
 </body>
 </html>
