@@ -26,6 +26,6 @@ var MUSICA = [
   {archivo:'063. It\'s Raining Somewhere Else (UNDERTALE Soundtrack) - Toby Fox [KtC-pl9P3kE].mp3', titulo:'It\'s Raining Somewhere Else', artista:'Toby Fox'},
   {archivo:'071. Undertale (UNDERTALE Soundtrack) - Toby Fox [1HIKNbnV8nw].mp3', titulo:'Undertale', artista:'Toby Fox'},
   {archivo:'083. Here We Are (UNDERTALE Soundtrack) - Toby Fox [52olsp3GUqY].mp3', titulo:'Here We Are', artista:'Toby Fox'},
-  {archivo:'bubble fountain [YCMg8zEVWHs].mp3', titulo:'Bubble Fountain', artista:''},
-  {archivo:'Home-Night.mp3', titulo:'Home Night', artista:''}
+  {archivo:'Home-Night.mp3', titulo:'Home Night', artista:'Toby Fox'},
+  {archivo:'bubble fountain [YCMg8zEVWHs].mp3', titulo:'Bubble Fountain', artista:'aero'}
 ];
